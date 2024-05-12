@@ -6,10 +6,10 @@ app.use(express.json())
 const router = express.Router();
 const commentsController = require("../controllers/commentsController");
 
-router.route('/')
+router.route('/:postId')
     .get(async (req, res) => {
-        const id = req.params.postId;
-        const comments = await commentsController.ReadAll(id);
+        const postId = req.params.postId;
+        const comments = await commentsController.ReadAll(postId);
         res.send(comments);
     })
 

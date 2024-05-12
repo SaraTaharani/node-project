@@ -28,7 +28,7 @@ function Comments() {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:3000/comments?postId=${postParams.id}`)
+        fetch(`http://localhost:3000/comments/${postParams.id}`)
             .then(res => res.json())
             .then(data => {
                 if (data) {

@@ -33,7 +33,7 @@ function Posts() {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3000/posts?&userId=${user.id}`)
+    fetch(`http://localhost:3000/posts/${user.userId}`)
       .then(res => res.json())
       .then(data => {
         if (data) {

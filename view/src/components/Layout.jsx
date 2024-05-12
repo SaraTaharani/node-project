@@ -10,14 +10,12 @@ function Layout() {
     <div className="navigation">
         <Link to="/home" className="homePage">home</Link>
       <nav>
-        <NavLink to={`user/${user.id}/info`}
+        <NavLink to={`user/${user.userId}/info`}
           className={({ isActive }) => isActive ? "activeLink" : null}>Info</NavLink>
-        <NavLink to={`user/${user.id}/todos`}
+        <NavLink to={`user/${user.userId}/todos`}
           className={({ isActive }) => isActive ? "activeLink" : null}>Todos</NavLink>
-        <NavLink to={`user/${user.id}/posts`}
+        <NavLink to={`user/${user.userId}/posts`}
           className={({ isActive }) => isActive ? "activeLink" : null}>Posts</NavLink>
-        <NavLink to={`user/${user.id}/albums`}
-          className={({ isActive }) => isActive ? "activeLink" : null}>Albums</NavLink>
         <NavLink to="/login"
           className={({ isActive }) => isActive ? "activeLink" : null}>logout</NavLink>
       </nav>

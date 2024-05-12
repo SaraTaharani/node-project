@@ -4,12 +4,12 @@ const pool = require("../database");
 //בעיה בשליפת הנתונים 
 async function getUserFullDetails(userId) {
     const sql = 'SELECT id,name,username,email,phone,city,street FROM users u natural  join  addresses  WHERE u.id=?';
-    const [result] = await pool.query(sql, userId);
+    const [result] = await pool.query(sql, [userId]);
     return result[0];
 }
-//בדיקה האם קיים משתמש
+//עבדיקה האם קיים משתמש
 async function getUser(username, cryptedPassword) {
-    const sql = 'SELECT username FROM passwords , users WHERE password=?  and username=?'
+    const sql = ' SELECT userId, name, username, email, phone, city, street FROM passwords , users u , addresses a WHERE password=?  and username=? and u.addressId=a.id;'
     const [result] = await pool.query(sql, [cryptedPassword ,username]);
     return result;
 }

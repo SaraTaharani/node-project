@@ -6,12 +6,10 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import FullRegister from "./pages/FullRegiser"
 import Info from "./pages/Info.jsx"
-import Albums from "./pages/Albums.jsx"
 import Todos from "./pages/Todos.jsx"
 import Posts from "./pages/Posts.jsx"
 import LayoutUser from "./components/LayoutUser"
 import Comments from "./pages/Comments"
-import Photos from "./pages/Photos"
 import "./cssFiles/App.css"
 import "./cssFiles/Layout.css"
 
@@ -33,13 +31,11 @@ function App() {
             <Route path="/fullRegister" element={<FullRegister />} />
             <Route path="/home" element={<Layout />} >
               <Route index element={<Home />} />
-              <Route path="user/:id" element={<LayoutUser />} >
+              <Route path="user/:userId" element={<LayoutUser />} >
                 <Route path="info" element={<Info />} />
                 <Route path="todos" element={<Todos />} />
                 <Route path="posts" element={<Posts />} />
                 <Route path="posts/:id/comments" element={<Comments />} />
-                <Route path="albums" element={<Albums />} />
-                <Route path="albums/:id/photos" element={<Photos/>} />
               </Route>
 
             </Route>

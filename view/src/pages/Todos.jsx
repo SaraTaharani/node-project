@@ -11,7 +11,7 @@ function Todos() {
   const [searchType, setSearchType] = useState("")
   const [sortType, setSortType] = useState("Serial")
   const [displayNewTodo, setDisplayNewTodo] = useState(false)
-  const [newTodo, setNewTodo] = useState({ userId: user.id, id: "", title: "", completed: false })
+  const [newTodo, setNewTodo] = useState({ userId: user.userId, id: "", title: "", completed: false })
   const [textType, setTextType] = useState(true)
 
   useEffect(() => {
@@ -55,7 +55,7 @@ function Todos() {
 
 
   useEffect(() => {
-    fetch(`http://localhost:3000/todos?&userId=${user.id}`)
+    fetch(`http://localhost:3000/todos/${user.userId}`)
       .then(res => res.json())
       .then(data => {
         if (data) {
@@ -145,13 +145,13 @@ function Todos() {
         setNewTodo({ userId: user.id, id: "", title: "", completed: false })
       }}>new todo</button>
 
-      {todosList ? 
-      <div className="gridItems">
-      {todosList.map((todo) =>
-        <div key={todo.id} className="singleItem">
-          <SingleTodo todo={todo} todosList={todosList} setTodosList={setTodosList} setTodosSource={setTodosSource} />  
-        </div>
-      )}</div> : <h2>Loading...</h2>}
+      {todosList ?
+        <div className="gridItems">
+          {todosList.map((todo) =>
+            <div key={todo.id} className="singleItem">
+              <SingleTodo todo={todo} todosList={todosList} setTodosList={setTodosList} setTodosSource={setTodosSource} />
+            </div>
+          )}</div> : <h2>Loading...</h2>}
 
       {displayNewTodo && <div className="new">
         <label htmlFor="title">title</label>

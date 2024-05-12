@@ -19,11 +19,11 @@ router.route('/')
         res.send(await postsController.ReadById(response.insertId));
     });
 
-router.route('/:id')
+    router.route('/:userId')
     .get(async (req, res) => {
-        const id = req.params.id;
-        const post = await postsController.ReadById(id);
-        res.send(post);
+        const userId = req.params.userId;
+        const todos = await postsController.ReadAll(userId);
+        res.send(todos);
     })
     .put(async (req, res) => {
         const id = req.params.id;

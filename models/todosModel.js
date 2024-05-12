@@ -1,9 +1,9 @@
 const pool =require("../database");
 
 async function getTodos(userId) {
-    const sql = 'SELECT * FROM todos WHERE userId=?;';
-    const [result] = await pool.query(sql,userId);
-    return result[0];
+    const sql = 'SELECT userId, title, completed FROM todos WHERE userId=?';
+    const [result] = await pool.query(sql, [userId]);
+    return result;
 }
 
 async function createTodo(userId, title, completed) {

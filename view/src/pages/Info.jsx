@@ -8,14 +8,12 @@ function Info() {
   return (
     <>
       <div className="infoDiv">  
-        id: {user.id} <br />
+        id: {user.userId} <br />
         name: {user.name} <br />
         username: {user.username} <br />
         email: {user.email} <br />
-        address: {user.address.street} {user.address.city} <br />
-        zipcode: {user.address.zipcode} <br />
+        address: {user.street} , {user.city} <br />
         phone: {user.phone} <br />
-        company: {user.company.name} <br />
       </div>
     </>
   )

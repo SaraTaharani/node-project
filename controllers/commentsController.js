@@ -10,19 +10,12 @@ async function CREATE(postId, name, email, body){
 
 async function ReadAll(postId){
     try{
-        return model.getComments(postId);
+        const comments=await  model.getComments(postId);
+        return comments;
     }catch(err){
         throw err;
     }
 }
-
-// async function ReadById(id){
-//     try{
-//         return model.getComment(id);
-//     }catch(err){
-//         throw err;
-//     }
-// }
 
 async function DELETE(id){
     try{

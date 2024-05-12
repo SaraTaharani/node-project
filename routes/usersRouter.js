@@ -12,7 +12,6 @@ const usersController=require("../controllers/usersController")
 const todosRouter = require("./todosRouter")
 const postsRouter=require('./postsRouter');
 //const { default: Login } = require('../view/src/pages/Login');
-router.route('/:userId/todos', todosRouter);
 router.use('/:userId/posts/', postsRouter);
 // router.use('/:userId/posts/:postId/comments', postsRouter);
 
@@ -22,11 +21,12 @@ router.post("/logIn", async (req, res) => {
     res.send(username);
 })
 
-// router.post("/logIn", async (req, res) => {
-//     console.log(req.body);
+// router.post("/signUp", async (req, res) => {
 //     const username = await usersController.CheckIfExist("L.G.", "hildegard.org");
 //     res.send(username);
 // })
+
+
 
 
 

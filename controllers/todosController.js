@@ -2,7 +2,8 @@ const model = require("../models/todosModel")
 
 async function CREATE(userId, title, completed){
     try{
-        return model.createTodo(userId, title, completed);
+        const todoId=await model.createTodo(userId, title, completed);
+        return todoId;
     }catch(err){
         throw err;
     }
@@ -10,7 +11,8 @@ async function CREATE(userId, title, completed){
 
 async function ReadAll(userId){
     try{
-        return model.getTodos(userId);
+        const todos=await model.getTodos(userId);
+        return todos;
     }catch(err){
         throw err;
     }

@@ -9,7 +9,8 @@ async function CREATE(userId,title,body){
 
 async function ReadAll(userId){
     try{
-        return model.getPosts(userId);
+        const posts=await model.getPosts(userId);
+        return posts;
     }catch(err){
         throw err;
     }
