@@ -1,0 +1,142 @@
+/* Center the divs on the page */
+body {
+  margin: 0;
+  background-color: #f8f8f8; /* Set a background color for the whole page */
+  text-align: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Add these styles to your existing CSS file */
+form {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  /* background-color: #f1e8e8; */
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  align-items: center;
+  margin: auto;
+}
+
+#login,
+#register,
+#fullRegister {
+  text-align: center;
+  align-items: center;
+  margin-top: 20px; /* Add some top margin for spacing */
+}
+
+h1 {
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 10px 0;
+  color: #555;
+}
+
+input {
+  /* width: 100%; */
+  padding: 8px;
+  margin: 6px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  /* width: 100%; */
+  padding: 10px;
+  background-color:black;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #dd5c98ab;
+  color:white;
+}
+
+p {
+  margin-top: 10px;
+  color: #888;
+}
+
+a {
+  color:black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.new{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.gridItems {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 items in a row */
+  gap: 16px; /* Adjust the gap between items */
+}
+
+.singleItem {
+  /* Add any styling you want for each item */
+  border: 1px solid #dd5c98ab;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* To prevent content from overflowing */
+}
+
+.newButton{
+  background-color: #dd5c98ab;
+  color: white;
+  margin: 20px;
+}
+
+.newButton:hover{
+  background-color: #da1d75ab;
+}
+/* Style for the second select element with id "search" */
+.select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Optional: Style for the label */
+label {
+  font-weight: bold;
+}
+
+/* Optional: Additional styling for better appearance */
+option {
+  font-size: 14px;
+  
+}
+
+.infoDiv{
+  margin-top: 10px;
+  font-size: 20px;
+  border: 2px #dd5c98ab;
+}

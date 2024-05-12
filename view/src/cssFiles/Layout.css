@@ -1,0 +1,39 @@
+header {
+  padding: 10px 0; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: #da1d75ab;
+  width: 100%;
+}
+.navigation{
+  top: 10px;
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.hello{
+  /* margin: 100px; */
+  font-size: 50px;
+  font-weight: bold;
+  color: #dd5c98ab;
+}
+nav a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  margin: 0 15px;
+  padding: 10px 0;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #5f94d1; 
+}
+
+.activeLink {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #5f94d1;
+}
+

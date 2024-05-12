@@ -1,0 +1,26 @@
+const express = require('express');
+const app = express();
+const path = require('path');
+const cors = require('cors');
+const postsRouter= require("./routes/postsRouter")
+const usersRouter= require("./routes/usersRouter");
+const commentsRouter= require("./routes/commentsRouter");
+const todosRouter= require("./routes/todosRouter");
+app.use(cors());
+app.use('/users',usersRouter)
+app.use('/posts',postsRouter)
+app.use('/comments',commentsRouter)
+app.use('/todos',todosRouter)
+const logger = (req, res, next)=>{
+    console.log('logger');
+    next();
+}
+
+
+// app.get('/',
+//    (async (req, res) => {
+//         const posts = await postsController.ReadAll();
+//         res.send(posts);
+//     }))
+app.listen(3000,()=>{console.log("app is listenning in 3000")});
+
