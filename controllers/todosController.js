@@ -22,7 +22,8 @@ async function ReadAll(userId){
 
 async function DELETE(id){
     try{
-        return model.deleteTodo(id);
+        const result=await model.deleteTodo(id);
+        return result;
     }catch(err){
         throw err;
     }
@@ -30,7 +31,8 @@ async function DELETE(id){
 
 async function UPDATE(todo){
     try{
-        return model.updatedTodo(todo);
+        const returnedTodo=await model.updatedTodo(todo);
+        return returnedTodo;
     }catch(err){
         throw err;
     }

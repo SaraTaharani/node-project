@@ -26,7 +26,8 @@ async function ReadById(id){
 
 async function DELETE(id){
     try{
-        return model.deletePost(id);
+        const result=await model.deletePost(id);
+        return result;
     }catch(err){
         throw err;
     }

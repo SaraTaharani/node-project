@@ -1,7 +1,7 @@
 const pool =require("../database");
 
 async function getTodos(userId) {
-    const sql = 'SELECT userId, title, completed FROM todos WHERE userId=?';
+    const sql = 'SELECT * FROM todos WHERE userId=?';
     const [result] = await pool.query(sql, [userId]);
     return result;
 }
@@ -21,6 +21,7 @@ async function deleteTodo(id) {
     try {
         const sql = 'DELETE FROM todos WHERE id=?';
         const [result] = await pool.query(sql, id);
+        console.log(`the result ${result}`);
         return result[0][0];
     }
     catch (err) {
@@ -31,7 +32,7 @@ async function deleteTodo(id) {
 async function updatedTodo(todo) {
     try {
         const sql = 'UPDATE todos WHERE id=?';
-        const [result] = await pool.query(sql, todo.id);
+        const [result] = await pool.query(sql,todo.id);
         return result[0][0];
     }
     catch (err) {

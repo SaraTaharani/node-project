@@ -20,4 +20,16 @@ router.route('/')
         const todos = await todosController.ReadAll(userId);
         res.send(todos);
     })
+    router.route('/:todoId')
+    .delete(async (req, res) => {
+        const todoId = req.params.todoId;
+        const todos = await todosController.DELETE(todoId);
+        res.send(todos);
+    })
+    // router.route('/:todoId')
+    // .put(async (req, res) => {
+    //     const todoId = req.params.todoId;
+    //     const  postIdd= await todosController.UPDATE();
+    //     res.send(todos);
+    // })
     module.exports = router;
