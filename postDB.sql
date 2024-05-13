@@ -43,7 +43,7 @@ CREATE TABLE passwords (
 CREATE TABLE todos (
   userId int,
   id int auto_increment,
-  title text NOT NULL,
+  title varchar(50) NOT NULL,
   completed bool,
   PRIMARY KEY (id),
   FOREIGN KEY (userId) REFERENCES users (id)

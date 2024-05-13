@@ -5,7 +5,12 @@ app.use(cors());
 app.use(express.json())
 const router = express.Router();
 const commentsController = require("../controllers/commentsController");
-
+router.route('/')
+    .post(async (req, res) => {
+        const comment=req.body;
+        const comment_result = await commentsController.CREATE(comment.postId, comment.name, comment.email,comment.body);
+        res.send(comment_result);
+    })
 router.route('/:postId')
     .get(async (req, res) => {
         const postId = req.params.postId;

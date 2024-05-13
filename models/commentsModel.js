@@ -9,9 +9,13 @@ async function getComments(postId) {
 
 async function createComment(postId, name, email,body) {
     try {
-        const sql = `INSERT INTO comments (postId, name, email, body) values(${postId}, ${name}, ${email}, ${body})`;
-        const [result] = await pool.query(sql);
-        return result[0][0];
+        const sql = `INSERT INTO comments (postId, name, email,body) values(?,?,?,?)`;
+        const [result] = await pool.query(sql,[postId, name, email,body]);
+         const newcommentId = result.insertId;
+         const selectSql = `SELECT * FROM comments WHERE id = ?`;
+         const [selectedcomment] = await pool.query(selectSql, [newcommentId]);
+         const insertedcomment = selectedcomment[0];
+         return insertedcomment;
     }
     catch (err) {
         console.log(err);

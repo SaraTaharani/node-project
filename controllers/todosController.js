@@ -2,9 +2,10 @@ const model = require("../models/todosModel")
 
 async function CREATE(userId, title, completed){
     try{
-        const todoId=await model.createTodo(userId, title, completed);
-        return todoId;
-    }catch(err){
+        const todo=await model.createTodo(userId, title, completed);
+        return todo;
+    }
+    catch(err){
         throw err;
     }
 }

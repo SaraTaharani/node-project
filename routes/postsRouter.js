@@ -6,7 +6,13 @@ app.use(cors());
 const router = express.Router();
 const postsController = require("../controllers/postsController");
 
-
+router.route('/')
+    .post(async (req, res) => {
+        const post=req.body;
+        // console.log(`post controler=> ${req.body}`);
+        const post_result = await postsController.CREATE(post.userId, post.title, post.body);
+        res.send(post_result);
+    })
 router.route('/:userId')
 .get(async (req, res) => {
     const userId = req.params.userId;

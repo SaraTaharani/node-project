@@ -8,9 +8,7 @@ const todosController = require("../controllers/todosController");
 router.route('/')
     .post(async (req, res) => {
         const todo=req.body;
-        console.log(req.body);
         const todoId = await todosController.CREATE(todo.userId, todo.title, todo.completed);
-        console.log(todoId)
         res.send(todoId);
     })
 

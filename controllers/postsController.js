@@ -1,7 +1,7 @@
 const model = require("../models/postsModel")
 async function CREATE(userId,title,body){
     try{
-        return model.createPost(userId,title,body);
+        return await model.createPost(userId,title,body);
     }catch(err){
         throw err;
     }

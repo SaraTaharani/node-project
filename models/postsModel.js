@@ -12,11 +12,16 @@ async function getPost(id) {
     return result;
 }
 
-async function createPost(userId, title, body) {
+async function createPost(userId, title, body)
+ {
     try {
-        const sql = `INSERT INTO posts (userId, title, body) values(${userId}, ${title}, ${body})`;
-        const [result] = await pool.query(sql);
-        return result[0][0];
+        const sql = `INSERT INTO posts (userId, title, body) values(?,?,?)`;
+        const [result] = await pool.query(sql,[userId,title,body]);
+         const newPostId = result.insertId;
+         const selectSql = `SELECT * FROM posts WHERE id = ?`;
+         const [selectedPost] = await pool.query(selectSql, [newPostId]);
+         const insertedPost = selectedPost[0];
+         return insertedPost;
     }
     catch (err) {
         console.log(err);

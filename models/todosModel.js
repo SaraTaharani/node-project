@@ -8,9 +8,13 @@ async function getTodos(userId) {
 
 async function createTodo(userId, title, completed) {
     try {
-        const sql = `INSERT INTO todos (userId, title, completed) values(${userId}, ${title}, ${completed})`;
-        const [result] = await pool.query(sql);
-        return result[0][0];
+        const sql = `INSERT INTO todos (userId, title, completed) values(?,?,?)`;
+         const [result] = await pool.query(sql,[userId,title,completed]);
+         const newTodoId = result.insertId;
+         const selectSql = `SELECT * FROM todos WHERE id = ?`;
+         const [selectedTodo] = await pool.query(selectSql, [newTodoId]);
+         const insertedTodo = selectedTodo[0];
+         return insertedTodo;
     }
     catch (err) {
         console.log(err);

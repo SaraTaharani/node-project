@@ -2,7 +2,7 @@ const model = require("../models/commentsModel")
 
 async function CREATE(postId, name, email, body){
     try{
-        return model.createComment(postId, name, email, body);
+        return await model.createComment(postId, name, email, body);
     }catch(err){
         throw err;
     }
