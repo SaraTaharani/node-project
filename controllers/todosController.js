@@ -29,9 +29,9 @@ async function DELETE(id){
     }
 }
 
-async function UPDATE(todo){
+async function UPDATE(todoId, todo){
     try{
-        const returnedTodo=await model.updatedTodo(todo);
+        const returnedTodo=await model.updatedTodo(todoId, todo);
         return returnedTodo;
     }catch(err){
         throw err;

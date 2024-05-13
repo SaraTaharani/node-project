@@ -31,9 +31,10 @@ function Login() {
     fetch(`http://localhost:3000/users/logIn`, request)
       .then(res => res.json())
       .then(data => {
-        if (data[0]) {
-          localStorage.setItem("currentUser", JSON.stringify(data[0]))
-          setUser(data[0])
+        console.log(data);
+        if (data) {
+          localStorage.setItem("currentUser", JSON.stringify(data))
+          setUser(data)
           navigate("/home")
         }
         else {

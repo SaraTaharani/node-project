@@ -25,16 +25,19 @@ async function ReadById(id) {
 }
 
 async function CheckIfExist(username,password) {
-    let user=null;
+    
     try {
-        user =await model.getUser(username,password);
+        console.log(`username ${username} ${password}`)
+        const user =await model.getUser(username,password);
+        console.log(`controller ${user}`)
+        return user;
     } catch (err) {
         throw err;
     }
 //     if (!user)
 //     return false;
 // return true;
-return user;
+
 }
 
 

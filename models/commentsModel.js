@@ -22,7 +22,18 @@ async function deleteComment(id) {
     try {
         const sql = 'DELETE FROM comments WHERE id=?';
         const [result] = await pool.query(sql, id);
-        return result[0][0];
+        return result[0];
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+async function updatedComment(commentId,comment) {
+    try {
+        const sql = 'UPDATE comments SET postId = ?, name = ?, email = ?, body = ? WHERE id = ?';
+        const [result] = await pool.query(sql, [comment.postId, comment.name, comment.email,comment.body,  commentId]);
+        return result[0];
     }
     catch (err) {
         console.log(err);
@@ -32,5 +43,5 @@ async function deleteComment(id) {
 module.exports = {
     getComments,
     createComment,
-    deleteComment
+    deleteComment, updatedComment
 }

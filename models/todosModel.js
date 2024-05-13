@@ -1,4 +1,4 @@
-const pool =require("../database");
+const pool = require("../database");
 
 async function getTodos(userId) {
     const sql = 'SELECT * FROM todos WHERE userId=?';
@@ -29,11 +29,11 @@ async function deleteTodo(id) {
     }
 }
 
-async function updatedTodo(todo) {
+async function updatedTodo(todoId, todo) {
     try {
-        const sql = 'UPDATE todos WHERE id=?';
-        const [result] = await pool.query(sql,todo.id);
-        return result[0][0];
+        const sql = 'UPDATE todos SET userId = ?, title = ?, completed = ? WHERE id = ?';
+        const [result] = await pool.query(sql, [todo.userId, todo.title, todo.completed, todoId]);
+        return result[0];
     }
     catch (err) {
         console.log(err);
@@ -41,7 +41,7 @@ async function updatedTodo(todo) {
 }
 
 module.exports = {
-    
+
     getTodos,
     createTodo,
     updatedTodo,

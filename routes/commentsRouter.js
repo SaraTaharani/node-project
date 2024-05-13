@@ -12,5 +12,16 @@ router.route('/:postId')
         const comments = await commentsController.ReadAll(postId);
         res.send(comments);
     })
-
+    router.route('/:commentId').
+    put(async (req, res) => {
+        const commentId = req.params.commentId;
+        const  returnId= await commentsController.UPDATE(commentId,req.body);
+        res.send(returnId);
+    })
+    .delete(async (req, res) => {
+        const commentId = req.params.commentId;
+        const comment = await commentsController.DELETE(commentId);
+        res.send(comment);
+    })
+    
     module.exports = router;

@@ -25,9 +25,14 @@ async function createPost(userId, title, body) {
 
 async function deletePost(id) {
     try {
-        const sql = 'DELETE FROM posts WHERE id=?';
-        const [result] = await pool.query(sql, id);
-        return result[0][0];
+        const sqlComment = 'DELETE FROM comments WHERE postId=?' 
+        const sqlPost= ' DELETE FROM posts WHERE id=?';
+        const [resultComment] = await pool.query(sqlComment, id);
+        const [resultPost] = await pool.query(sqlPost, id);
+        console.log(resultPost[0])
+        // const resultPost_parse=JSON.parse(resultPost)
+
+        return resultPost[0];
     }
     catch (err) {
         console.log(err);

@@ -8,6 +8,7 @@ const todosController = require("../controllers/todosController");
 router.route('/')
     .post(async (req, res) => {
         const todo=req.body;
+        console.log(req.body);
         const todoId = await todosController.CREATE(todo.userId, todo.title, todo.completed);
         console.log(todoId)
         res.send(todoId);
@@ -26,10 +27,10 @@ router.route('/')
         const todos = await todosController.DELETE(todoId);
         res.send(todos);
     })
-    // router.route('/:todoId')
-    // .put(async (req, res) => {
-    //     const todoId = req.params.todoId;
-    //     const  postIdd= await todosController.UPDATE();
-    //     res.send(todos);
-    // })
+    router.route('/:todoId')
+    .put(async (req, res) => {
+        const todoId = req.params.todoId;
+        const  returnId= await todosController.UPDATE(todoId,req.body);
+        res.send(returnId);
+    })
     module.exports = router;

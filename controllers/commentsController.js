@@ -19,15 +19,15 @@ async function ReadAll(postId){
 
 async function DELETE(id){
     try{
-        return model.deleteComment(id);
+        return await model.deleteComment(id);
     }catch(err){
         throw err;
     }
 }
 
-async function UPDATE(user){
+async function UPDATE(commentId,comment){
     try{
-        return model.updatedComment(user);
+        return await model.updatedComment(commentId,comment);
     }catch(err){
         throw err;
     }

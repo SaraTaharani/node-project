@@ -18,8 +18,9 @@ function SinglePost(props) {
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => res.json)
+            .then(res => res.json())
             .then(data => {
+                console.log(data)
                 if (data) {
                     props.setPostsList(prev => prev.filter(post => post.id != id))
                     props.setPostsSource(props.postsList)

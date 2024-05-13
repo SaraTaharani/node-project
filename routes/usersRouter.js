@@ -1,13 +1,8 @@
 const express = require('express');
 const app = express();
-// const bodyParser = require('body-parser');
-// const cors = require('cors')
-// app.use(bodyParser.json());
-// app.use(cors());
  app.use(express.json())
-
+ app.use(express.urlencoded({extended:true}))
 const router = express.Router()
-router.use(express.urlencoded({extended:true}))
 const usersController=require("../controllers/usersController")
 const todosRouter = require("./todosRouter")
 const postsRouter=require('./postsRouter');
@@ -16,9 +11,9 @@ router.use('/:userId/posts/', postsRouter);
 // router.use('/:userId/posts/:postId/comments', postsRouter);
 
 router.post("/logIn", async (req, res) => {
-    console.log(req.body);
-    const username = await usersController.CheckIfExist("L.G.", "hildegard.org");
-    res.send(username);
+    const body=(req.body)
+    const user= await usersController.CheckIfExist(body.username, body.password);
+    res.send(user);
 })
 
 // router.post("/signUp", async (req, res) => {

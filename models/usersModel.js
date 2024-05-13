@@ -11,7 +11,8 @@ async function getUserFullDetails(userId) {
 async function getUser(username, cryptedPassword) {
     const sql = ' SELECT userId, name, username, email, phone, city, street FROM passwords , users u , addresses a WHERE password=?  and username=? and u.addressId=a.id;'
     const [result] = await pool.query(sql, [cryptedPassword ,username]);
-    return result;
+    console.log(result[0])
+    return JSON.stringify(result[0]);
 }
 
 async function createUser(username, cryptedPassword) {
