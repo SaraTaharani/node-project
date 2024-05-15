@@ -10,9 +10,24 @@ async function getUserFullDetails(userId) {
 //עבדיקה האם קיים משתמש
 async function getUser(username, cryptedPassword) {
     const sql = ' SELECT userId, name, username, email, phone, city, street FROM passwords , users u , addresses a WHERE password=?  and username=? and u.addressId=a.id;'
-    const [result] = await pool.query(sql, [cryptedPassword ,username]);
-    console.log(result[0])
-    return JSON.stringify(result[0]);
+    const [result] = await pool.query(sql, [cryptedPassword, username]);
+    if (result.length > 0) {
+        return result[0]; 
+    } 
+    else {
+       throw new Error("err");
+    }
+}
+//בדיקה אם יוסר צריך להרשם
+async function getExistUser(username, cryptedPassword) {
+    const sql = ' SELECT userId, name, username, email, phone, city, street FROM passwords , users u , addresses a WHERE password=?  and username=? and u.addressId=a.id;'
+    const [result] = await pool.query(sql, [cryptedPassword, username]);
+    if (result.length > 0) {
+        return false;
+    } 
+    else {
+       return true;
+    }
 }
 
 async function createUser(username, cryptedPassword) {
@@ -47,5 +62,6 @@ module.exports = {
     getUserFullDetails,
     createUser,
     updateUser,
-    getUser
+    getUser,
+    getExistUser
 }

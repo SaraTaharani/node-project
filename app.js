@@ -13,16 +13,5 @@ app.use('/users',usersRouter)
 app.use('/posts',postsRouter)
 app.use('/comments',commentsRouter)
 app.use('/todos',todosRouter)
-const logger = (req, res, next)=>{
-    console.log('logger');
-    next();
-}
-
-
-// app.get('/',
-//    (async (req, res) => {
-//         const posts = await postsController.ReadAll();
-//         res.send(posts);
-//     }))
 app.listen(3000,()=>{console.log("app is listenning in 3000")});
 

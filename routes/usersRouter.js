@@ -1,25 +1,50 @@
 const express = require('express');
 const app = express();
- app.use(express.json())
- app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 const router = express.Router()
-const usersController=require("../controllers/usersController")
+const usersController = require("../controllers/usersController")
 const todosRouter = require("./todosRouter")
-const postsRouter=require('./postsRouter');
-//const { default: Login } = require('../view/src/pages/Login');
+const postsRouter = require('./postsRouter');
+const { getUserFullDetails } = require('../models/usersModel');
 router.use('/:userId/posts/', postsRouter);
-// router.use('/:userId/posts/:postId/comments', postsRouter);
 
 router.post("/logIn", async (req, res) => {
-    const body=(req.body)
-    const user= await usersController.CheckIfExist(body.username, body.password);
-    res.send(user);
+    try {
+        const body = (req.body)
+        const user = await usersController.CheckIfExist(body.username, body.password);
+        res.send(user);
+    }
+    catch (err) {
+        res.status(500).send(err);
+    }
+
 })
 
-// router.post("/signUp", async (req, res) => {
-//     const username = await usersController.CheckIfExist("L.G.", "hildegard.org");
-//     res.send(username);
-// })
+router.post("/signUp", async (req, res) => {
+    try {
+        const body = (req.body)
+        const result = await usersController.CheckIfDoesNotExist(body.username, body.password);
+        if (result!=0)
+        res.status(200).send(await getUserFullDetails(result));
+        else
+        res.status(400).send("The user is already exist");  
+    }
+    catch (err) {
+        throw err;
+    }
+})
+
+router.put("/", async (req, res) => {
+    try {
+        const body = (req.body)
+        const result = await usersController.UPDATE(body.name, body.username, body.email, body.phone, body.addressCity, body.addressStreet);
+       res.status(200).send(await getUserFullDetails(id))
+    }
+    catch (err) {
+        throw err;
+    }
+})
 
 
 
@@ -97,5 +122,5 @@ router.post("/logIn", async (req, res) => {
 //     //     res.send(await usersController.ReadById(userId));
 //     // });
 
-    module.exports = router;
+module.exports = router;
 

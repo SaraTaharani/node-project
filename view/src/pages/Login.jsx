@@ -21,45 +21,31 @@ function Login() {
   }
   function existUser(e) {
     e.preventDefault()
-    const request={
+    const request = {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({username:formData.username, password:formData.password})  
+      body: JSON.stringify({ username: formData.username, password: formData.password })
     }
     fetch(`http://localhost:3000/users/logIn`, request)
-      .then(res => res.json())
+      .then(res => {
+        if (res.status!=200) {
+          alert("The user does not exist")
+          navigate("/register")
+        } else 
+        return res.json()
+      })
       .then(data => {
-        console.log(data);
         if (data) {
           localStorage.setItem("currentUser", JSON.stringify(data))
           setUser(data)
           navigate("/home")
         }
-        else {
-          alert("The user does not exist")
-          navigate("/register")
-        }
       })
       .catch(error => console.error("Error fetching data from server:", error))
 
-   }
-  //   fetch(`http://localhost:3000/users?username=${formData.username}&password=${formData.password}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       if (data[0]) {
-  //         localStorage.setItem("currentUser", JSON.stringify(data[0]))
-  //         setUser(data[0])
-  //         navigate("/home")
-  //       }
-  //       else {
-  //         alert("The user does not exist")
-  //         navigate("/register")
-  //       }
-  //     })
-  //     .catch(error => console.error("Error fetching data from server:", error))
-  // }
+  }
   return (
     <div>
       <form id="login">

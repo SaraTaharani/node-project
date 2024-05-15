@@ -9,7 +9,6 @@ const postsController = require("../controllers/postsController");
 router.route('/')
     .post(async (req, res) => {
         const post=req.body;
-        // console.log(`post controler=> ${req.body}`);
         const post_result = await postsController.CREATE(post.userId, post.title, post.body);
         res.send(post_result);
     })
@@ -22,8 +21,7 @@ router.route('/:userId')
 router.route('/:postId')
 .delete(async (req, res) => {
     const postId = req.params.postId;
-    console.log(`postId=> ${postId}`)
-    const posts = await postsController.DELETE(postId);
+        const posts = await postsController.DELETE(postId);
     res.send(posts);
 })
 

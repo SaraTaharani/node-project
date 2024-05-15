@@ -8,7 +8,6 @@ async function getTodos(userId) {
 
 async function createTodo(userId, title, completed) {
     try {
-        console.log(userId)
         const sql = `INSERT INTO todos (userId, title, completed) values(?,?,?)`;
          const [result] = await pool.query(sql,[userId,title,completed]);
          const newTodoId = result.insertId;
@@ -26,7 +25,6 @@ async function deleteTodo(id) {
     try {
         const sql = 'DELETE FROM todos WHERE id=?';
         const [result] = await pool.query(sql, id);
-        console.log(`the result ${result}`);
         return result[0][0];
     }
     catch (err) {

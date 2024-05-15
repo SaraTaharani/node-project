@@ -2,7 +2,7 @@ const model = require("../models/usersModel")
 const bcrypt = require("bcrypt")
 async function UPDATE(name, username, email, phone, addressCity, addressStreet) {
     try {
-        return model.updateUser(name, username, email, phone, addressCity, addressStreet);
+        return await model.updateUser(name, username, email, phone, addressCity, addressStreet);
     } catch (err) {
         throw err;
     }
@@ -24,25 +24,25 @@ async function ReadById(id) {
     }
 }
 
-async function CheckIfExist(username,password) {
-    
+async function CheckIfExist(username, password) {
     try {
-        console.log(`username ${username} ${password}`)
-        const user =await model.getUser(username,password);
-        console.log(`controller ${user}`)
+        const user = await model.getUser(username, password);
         return user;
     } catch (err) {
         throw err;
     }
-//     if (!user)
-//     return false;
-// return true;
-
 }
 
-
+async function CheckIfDoesNotExist(username, password) {
+    const result = await model.getExistUser(username, password);
+    if(result)
+    {
+        return await model.createUser(username, password)
+    }
+    return 0;
+}
 
 module.exports =
 {
-    CREATE, ReadById, UPDATE,CheckIfExist
+    CREATE, ReadById, UPDATE, CheckIfExist, CheckIfDoesNotExist
 }
