@@ -9,7 +9,7 @@ function Posts() {
   const [searchChoosen, setSearchChoosen] = useState("")
   const [searchType, setSearchType] = useState("")
   const [displayNewPost, setDisplayNewPost] = useState(false)
-  const [newPost, setNewPost] = useState({ userId: user.id, id: "", title: "", body: "" })
+  const [newPost, setNewPost] = useState({ userId: user.userId, id: "", title: "", body: "" })
 
   function addPost(post) {
     fetch('http://localhost:3000/posts', {
@@ -78,7 +78,7 @@ function Posts() {
 
       <button className="newButton" onClick={() => {
         setDisplayNewPost(true)
-        setNewPost({ userId: user.id, id: "", title: "", body: "" })
+        setNewPost({ userId: user.userId, id: "", title: "", body: "" })
       }}>new post</button>
 
       {displayNewPost &&

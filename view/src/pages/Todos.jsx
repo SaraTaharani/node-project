@@ -33,6 +33,7 @@ function Todos() {
   }
 
   function addTodo(todo) {
+
     fetch('http://localhost:3000/todos', {
       method: "POST",
       body: JSON.stringify(todo),
@@ -142,7 +143,7 @@ function Todos() {
 
       <button className="newButton" onClick={() => {
         setDisplayNewTodo(true)
-        setNewTodo({ userId: user.id, id: "", title: "", completed: false })
+        setNewTodo({ userId: user.userId, id: "", title: "", completed: false })
       }}>new todo</button>
 
       {todosList ?

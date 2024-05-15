@@ -22,6 +22,7 @@ router.route('/:userId')
 router.route('/:postId')
 .delete(async (req, res) => {
     const postId = req.params.postId;
+    console.log(`postId=> ${postId}`)
     const posts = await postsController.DELETE(postId);
     res.send(posts);
 })
