@@ -24,22 +24,23 @@ router.post("/logIn", async (req, res) => {
 router.post("/signUp", async (req, res) => {
     try {
         const body = (req.body)
-        const result = await usersController.CheckIfDoesNotExist(body.username, body.password);
-        if (result!=0)
-        res.status(200).send(await getUserFullDetails(result));
+        const userId = await usersController.CheckIfDoesNotExist(body.username, body.password);
+        if (userId!=0)
+        res.status(200).send(await getUserFullDetails(userId));
         else
         res.status(400).send("The user is already exist");  
     }
     catch (err) {
-        throw err;
+        res.status(500).send(err);
     }
 })
 
 router.put("/", async (req, res) => {
     try {
         const body = (req.body)
-        const result = await usersController.UPDATE(body.name, body.username, body.email, body.phone, body.addressCity, body.addressStreet);
-       res.status(200).send(await getUserFullDetails(id))
+        console.log(body);
+        const result = await usersController.UPDATE(body.username, body.name, body.email, body.phone, body.address.city, body.address.street);
+       res.status(200).send(await getUserFullDetails(result))
     }
     catch (err) {
         throw err;

@@ -9,7 +9,7 @@ router.route('/')
     .post(async (req, res) => {
         const todo=req.body;
         const todoId = await todosController.CREATE(todo.userId, todo.title, todo.completed);
-        res.send(todoId);
+      res.status(200).send(todoId);
     })
 
 

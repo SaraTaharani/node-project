@@ -1,8 +1,9 @@
 const model = require("../models/usersModel")
 const bcrypt = require("bcrypt")
+const saltRounds=10;
 async function UPDATE(name, username, email, phone, addressCity, addressStreet) {
     try {
-        return await model.updateUser(name, username, email, phone, addressCity, addressStreet);
+        return await model.updateUser( username,name, email, phone, addressCity, addressStreet);
     } catch (err) {
         throw err;
     }
@@ -26,7 +27,8 @@ async function ReadById(id) {
 
 async function CheckIfExist(username, password) {
     try {
-        const user = await model.getUser(username, password);
+        const cryptedPassword = await bcrypt.hash(password, saltRounds)
+        const user = await model.getUser(username, cryptedPassword);
         return user;
     } catch (err) {
         throw err;
@@ -34,10 +36,10 @@ async function CheckIfExist(username, password) {
 }
 
 async function CheckIfDoesNotExist(username, password) {
-    const result = await model.getExistUser(username, password);
+    const result = await model.getExistUser(username,await bcrypt.hash(password,saltRounds));
     if(result)
     {
-        return await model.createUser(username, password)
+        return await model.createUser(username,await bcrypt.hash(password,saltRounds))
     }
     return 0;
 }

@@ -37,15 +37,6 @@ function FullRegister() {
         })
     }
 
-    function handleCompanyChange(event) {
-        const { name, value } = event.target
-        setFormData(() => {
-            return {
-                ...formData,
-                company: { ...formData.company, [name]: value }
-            }
-        })
-    }
 
     function newUser(e) {
         e.preventDefault()

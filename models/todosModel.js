@@ -34,7 +34,7 @@ async function deleteTodo(id) {
 
 async function updatedTodo(todoId, todo) {
     try {
-        const sql = 'UPDATE todos SET userId = ?, title = ?, completed = ? WHERE id = ?';
+        const sql = 'UPDATE todos SET title = ?, completed = ? WHERE id = ?';
         const [result] = await pool.query(sql, [todo.userId, todo.title, todo.completed, todoId]);
         return result[0];
     }
